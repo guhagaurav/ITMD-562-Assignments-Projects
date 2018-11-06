@@ -1,0 +1,65 @@
+doctype html
+html
+    head
+        title ITMD562-Final Project - Notes Application
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', integrity='sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ', crossorigin='anonymous')
+        link(rel='stylesheet', href='./bootstrap/style.css')
+        script(src='https://code.jquery.com/jquery-3.1.1.slim.min.js', integrity='sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n', crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js', integrity='sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb', crossorigin='anonymous')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn', crossorigin='anonymous')
+        script(type='text/javascript', src='/bootstrap/dbscript.js')
+    body
+     .container
+      .alert.alert-warning.alert-dismissible.fade.in
+        strong
+      h4(align='center', style='color:#b92c28;') ITMD 562 - Final Project
+      h4(align='center', style='color:#b92c28;') Personal Notes App
+      h2(align='center') Sticky Notes
+      .clearfix
+        .pull-left
+          button#add-note.btn.btn-primary(type='button', data-toggle='modal', data-placement='top', data-target='#myModal', title='Add a New Note')
+            | Add Note
+        .pull-right
+          strong.total-notes
+            | Total Notes:  
+            span#tot-count
+      .panel.panel-info
+        .panel-heading
+          strong List of Notes
+        table.table.table-striped
+          thead
+            tr
+              th(scope='col') Index
+              th(scope='col') Note
+              th(scope='col') Action
+          tbody#tbl
+      #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+        .modal-dialog(role='document')
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+              h4#myModalLabel.modal-title Add New Note
+            .modal-body
+              .form-group
+                label(for='noteSubjectField') Note Subject
+                input#noteSubjectField.form-control(placeholder='Subject', type='text')
+              .form-group
+                label(for='authorNameField') Author Name
+                input#authorNameField.form-control(type='text', placeholder='Author Name')
+              .form-group
+                label(for='noteMessageField') Note Message
+                textarea#noteMessageField.form-control(type='text', placeholder='Message', rows='5')
+                span#helpBlock.help-block
+              .checkbox
+                .text-right
+                  span#text-count(data-max-length='500')
+                   | Characters Remaining
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+              button#submitbtn.submit-btn.btn.btn-primary(type='button') Submit
+    block content
+    br
+    hr
+    footer
+        p Copyright &copy; 
