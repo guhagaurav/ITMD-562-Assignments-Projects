@@ -1,0 +1,38 @@
+{
+  "name": "week_9_hw",
+  "version": "1.0.0",
+  "description": "books",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha test"
+  },
+  "keywords": [
+    "books"
+  ],
+  "author": "gaurav guha",
+  "license": "ISC",
+  "dependencies": {
+    "circular-json": "^0.5.8",
+    "express": "^4.16.3",
+    "jquery": "^3.3.1",
+    "load-json-file": "^5.1.0",
+    "mongodb": "^3.1.8",
+    "parse-json": "^4.0.0",
+    "sinon": "^7.0.0"
+  },
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "http": "0.0.0",
+    "jasmine": "^3.2.0",
+    "mocha": "^5.2.0",
+    "mongoose": "^5.3.12",
+    "path": "^0.12.7",
+    "pug": "^2.0.3",
+    "request": "^2.88.0",
+    "should": "^13.2.3",
+    "supertest": "^3.3.0"
+  }
+}
