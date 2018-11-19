@@ -1,0 +1,17 @@
+extends layout
+block content
+   body#LoginForm
+      .login-form
+        .main-div
+          .panel
+            h2 Login to view Personalized Notes
+            p Please enter your email and password
+          form#Login
+            .form-group
+              input#inputEmail.form-control(type='email', placeholder='Email Address')
+            .form-group
+              input#inputPassword.form-control(type='password', placeholder='Password')
+            .forgot
+              a(href='reset.html') Forgot password?
+            button#loginbtn.btn.btn-primary(type='submit') Login
+   
