@@ -2,6 +2,16 @@ extends layout
 block content
    body#LoginForm
       .login-form
+       #page-wrapper.gray-bg.m-left
+      .row.border-bottom
+      .row.wrapper.border-bottom.white-bg.page-heading
+      .col-lg-12
+        h2 Web Note App
+        ol.breadcrumb
+          li.active
+            strong Home
+          li.active
+            a(href='register') Register
         .main-div
           .panel
             h2 Login to view Personalized Notes
@@ -12,6 +22,7 @@ block content
             .form-group
               input#inputPassword.form-control(type='password', placeholder='Password')
             .forgot
-              a(href='reset.html') Forgot password?
+              a(href='register') Forgot password?
             button#loginbtn.btn.btn-primary(type='submit') Login
-   
+            button.btn.btn-w-m.btn-primary(type='reset') Cancel
+   // Read email and validate it against the password available in Mongodb

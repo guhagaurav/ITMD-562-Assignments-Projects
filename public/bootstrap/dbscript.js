@@ -26,41 +26,7 @@
                     });
                 },
 
-                searchNote: function (searchText) {
-                    var self = this;
-                    let data = {};
-                    data.searchText = searchText;
-                    var newData = JSON.stringify(data)
-                    $("#tbl").empty();
-    
-                    $.ajax({
-                        type: 'POST',
-                        data: newData,
-                        contentType: 'application/json',
-                        url: 'http://localhost:3000/api/notes/search',						
-                        success: function(data) {
-                            for (let index in data) {
-                                self.variables.result.push(data[index])
-                                $("#tbl").append("<tr><td>" + index + "</td> <td><div class='note'>" +
-                                "<p>Subject: " + data[index].subject + "</p>" +
-                                "<p>Message: " + data[index].message + "</p>" + 
-                                " <p> Message Length: " + data[index].noteLength+ "</p>" +
-                                "<strong>Author: " + data[index].author + "</strong>" + " <span>, " + data[index].noteTime + "</span>" +
-                                "</div></td><td><button type='button' data-toggle='modal' data-target='#myModal' class='btn-sm edit-btn btn btn-primary' data-index='" + index + "'" + "id='edit-btn" + index + "'" + ">Edit</button> " +
-                                "<button type='button' class='btn-sm del-btn btn btn-danger' data-index='" + data[index]._id + "'" + "id='del-btn'>Delete</button>" +
-                                "<button type='button' class='btn-sm sms-btn btn btn-info' data-index='" + data[index]._id + "'" + "id='sms-btn'>Send SMS</button></td></td></tr>");
-                            //$('#pid').val('value')
-                            index++;
-                            // $('#tbl').append("<tr><td>"+a+"<tr></td>")
-                                }
-                        var len = data.length;
-                        $("#tot-count").text(len);
-                      
-                    }
-                    
-                    });
-                   
-                }, 
+   
     
                 addNote: function (obj) {
                     var self = this;
@@ -96,8 +62,7 @@
                             "<p>Message: " + data[index].message + "</p>" + " <p> Message Length: " + data[index].noteLength+ "</p>" +
                             "<strong>Author: " + data[index].author + "</strong>" + " <span>, " + data[index].noteTime + "</span>" +
                             "</div></td><td><button type='button' data-toggle='modal' data-target='#myModal' class='btn-sm edit-btn btn btn-primary' data-index='" + index + "'" + "id='edit-btn" + index + "'" + ">Edit</button> " +
-                            "<button type='button' class='btn-sm del-btn btn btn-danger' data-index='" + data[index]._id + "'" + "id='del-btn'>Delete</button>" +
-                            "<button type='button' class='btn-sm sms-btn btn btn-info' data-index='" + data[index]._id + "'" + "id='sms-btn'>Send SMS</button></td></td></tr>");
+                            "<button type='button' class='btn-sm del-btn btn btn-danger' data-index='" + data[index]._id + "'" + "id='del-btn'>Delete</button></td></td></tr>");
                         //$('#pid').val('value')
                         index++;
                         // $('#tbl').append("<tr><td>"+a+"<tr></td>")
@@ -110,23 +75,7 @@
                 },
     
     //editNote function will allow the user to edit note
-                editNote: function (obj) {
-                    let self = this;
-                    let id = obj.index;
-                    let data = JSON.stringify(obj);
-                    $.ajax({
-                        type: 'PUT',
-                        data: data,
-                        contentType: 'application/json',
-                        url: 'http://localhost:3000/api/notes/'+id,						
-                        success: function(data) {
-                            setTimeout(function () {
-                                self.getNote();
-                            }, 100);
-                        }
-                    });
-    
-                },
+   
     
     //delNote function will delete the note
                 delNote: function (id) {

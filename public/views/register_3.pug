@@ -1,0 +1,146 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title Web Note App
+  link(href='bootstrap/css/bootstrap.min.css', rel='stylesheet')
+  link(href='bootstrap/font-awesome/css/font-awesome.css', rel='stylesheet')
+  link(href='bootstrap/css/plugins/dataTables/datatables.min.css', rel='stylesheet')
+  link(href='bootstrap/css/plugins/misc/animate.css', rel='stylesheet')
+  link(href='bootstrap/css/plugins/misc/style.css', rel='stylesheet')
+  link(href='bootstrap/css/plugins/misc/custom.css', rel='stylesheet')
+  script(src='bootstrap/javascripts/misc/jquery-2.1.1.js')
+  script(src='bootstrap/javascripts/misc/jquery.include.js')
+#loader_overlay.hide
+  // loader
+  #loader_icon.loader
+    .spinner
+      .rect1
+      .rect2
+      .rect3
+      .rect4
+      .rect5
+  // loader ends
+  // overlay div
+  .overlay
+  // overlay div ends here
+// page loader div ends
+#wrapper
+  // left menu starts here
+  nav.navbar-default.navbar-static-side.width(role='navigation')
+    #sideNavMenu.sidebar-collapse
+      script.
+        $.include("side_nav.html");
+  // left menu ends here
+  #page-wrapper.gray-bg.m-left
+    .row.border-bottom
+      // top navigation starts here
+      //script.
+        $.include("top_navigation.html");
+      // top navigation ends here
+    .row.wrapper.border-bottom.white-bg.page-heading
+      .col-lg-9
+        h2 Register
+        ol.breadcrumb
+          li
+            a(href='login') Home
+          li.active
+            strong Register
+    // content part starts here
+    .wrapper.wrapper-content.animated.fadeInRight
+      .row
+        .col-lg-12
+          .ibox.float-e-margins
+            .ibox-content
+              .tabs-container
+                ul#criteria_tabs.nav.nav-tabs
+                  li.active
+                    a(data-toggle='tab', href='#tab-1', aria-expanded='true')  Register
+                .tab-content
+                  #tab-1.tab-pane.active
+                    .panel-body
+                      strong
+                      #status_message.hide
+                      form#form_override(name='form_override', method='POST')
+                        .form-horizontal
+                          .form-group
+                            label.col-lg-3.control-label Name
+                            .col-lg-4
+                              input#name.form-control(type='text', name='name', required='')
+                          .form-group
+                          .form-group
+                            label.col-lg-3.control-label Password
+                            .col-lg-4
+                              input#password.form-control(type='text', name='password')
+                          .form-group
+                            //
+                              <label class="col-lg-3 control-label">Login/Password communication</label>
+                              <div class="col-lg-8">
+                              <label class="radio-inline">
+                              <input value="messaging" type="checkbox" id="" name="radio" />
+                              Message me the login/password
+                              </label>
+                              <label class="radio-inline">
+                              <input value="email" type="checkbox" id="" name="radio"  />
+                              Email me the login/password
+                              </label>
+                              </div>
+                          .form-group
+                            label.col-lg-3.control-label Email-id
+                            .col-lg-4
+                              input#message.form-control(type='text', name='message')
+                          .form-group
+                            //
+                              <label class="col-lg-3 control-label">Allowed PRs</label>
+                              <div class="col-lg-4">
+                              <span class="help-block m-l-none">Comma separated PR numbers.</span>
+                              </div>
+                          .form-group
+                            //
+                              <label class="col-lg-3 control-label">Allowed User Id's</label>
+                              <div class="col-lg-4">
+                              <input type="text" class="form-control" id="allowed_users" name="allowed_users"   />
+                              <span class="help-block m-l-none">Comma separated username.</span>
+                              </div>
+                          .form-group
+                            label.col-lg-3.control-label
+                            .col-lg-9
+                              button#submit_form.btn.btn-w-m.btn-warning(type='submit', name='submit_form') Submit
+                              button.btn.btn-w-m.btn-warning(type='reset') Reset 
+    // content part ends here
+    // footer starts here
+    .footer
+      div
+        strong Copyright &copy; 2017-2018
+    // footer ends here
+    // hidden html contents
+    .hide
+      // modal for un inspected defects details
+      #common_modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+        .modal-dialog
+          // w-1200
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal')
+                span(aria-hidden='true') &times;
+                span.sr-only Close
+              h4.modal-title
+                span#sub-text
+            .modal-body
+            .modal-footer
+              .text-right
+      // modal ends
+// Mainly scripts
+script(src='bootstrap/js/bootstrap.min.js')
+script(src='bootstrap/js/plugins/metisMenu/jquery.metisMenu.js')
+script(src='bootstrap/js/plugins/slimscroll/jquery.slimscroll.min.js')
+script(src='bootstrap/js/plugins/jeditable/jquery.jeditable.js')
+// Custom and plugin javascript
+// <script src="bootstrap/js/misc/inspinia.js"></script>
+script(src='bootstrap/js/plugins/pace/pace.min.js')
+script(src='bootstrap/js/plugins/dataTables/datatables.min.js')
+// Jquery Validate
+script(src='bootstrap/js/plugins/validate/jquery.validate.min.js')
+link(href='bootstrap/css/plugins/select2/select2.min.css', rel='stylesheet')
+script(src='bootstrap/js/plugins/select2/select2.full.min.js')
+script(src='bootstrap/js/misc/common.js')
