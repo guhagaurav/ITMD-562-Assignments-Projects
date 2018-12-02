@@ -99,9 +99,9 @@
                                 "</div></td><td><button type='button' data-toggle='modal' data-target='#myModal' class='btn-sm edit-btn btn btn-primary' data-index='" + index + "'" + "id='edit-btn" + index + "'" + ">Edit</button> " +
                                 "<button type='button' class='btn-sm del-btn btn btn-danger' data-index='" + data[index]._id + "'" + "id='del-btn'>Delete</button>" +
                                 "<button type='button' class='btn-sm sms-btn btn btn-info' data-index='" + index + "'" + "id='sms-btn'>Send SMS</button></td></td></tr>");
-                            //$('#pid').val('value')
+                            
                             index++;
-                            // $('#tbl').append("<tr><td>"+a+"<tr></td>")
+                            
                                 }
                         let len = data.length;
                         $("#tot-count").text(len);
@@ -169,9 +169,9 @@
                             "</div></td><td><button type='button' data-toggle='modal' data-target='#myModal' class='btn-sm edit-btn btn btn-primary' data-index='" + index + "'" + "id='edit-btn" + index + "'" + ">Edit</button> " +
                             "<button type='button' class='btn-sm del-btn btn btn-danger' data-index='" + data[index]._id + "'" + "id='del-btn'>Delete</button>" +
                             "<button type='button' class='btn-sm sms-btn btn btn-info' data-index='" + index + "'" + "id='sms-btn'>Send SMS</button></td></td></tr>");
-                        //$('#pid').val('value')
+                        
                         index++;
-                        // $('#tbl').append("<tr><td>"+a+"<tr></td>")
+                        
                             }
                     var len = data.length;
                     $("#tot-count").text(len);
