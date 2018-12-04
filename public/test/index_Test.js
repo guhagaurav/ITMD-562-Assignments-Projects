@@ -1,3 +1,5 @@
+
+let assert = require('assert');
 var sinon = require('sinon');
 var chai = require('chai');
 var should = require('should');
@@ -41,6 +43,9 @@ describe("To test mongoose schema for all models", function(){
         expect(err.errors.secQuesEmp).to.exist;
         expect(err.errors.gender).to.exist;
         expect(err.errors.secAnsEmp).to.exist;  
+        expect('fNameEmp').to.be.a('string');
+        expect('lNameEmp').to.be.a('string');
+        expect('gender').to.be.a('string');
         done();
       })
    });
@@ -51,6 +56,8 @@ describe("To test mongoose schema for all models", function(){
       userSchema.validate(function (err){
         expect(err.errors.loginEmail).to.exist;
         expect(err.errors.loginPassword).to.exist;
+        expect('loginEmail').to.be.a('string');
+        expect('loginPassword').to.be.a('string');
         done();
       })
    });
@@ -90,6 +97,30 @@ describe('To test http methods for QuickNote', function(){
               expect(JSON.parse(res).author).to.exist;
             done();
           });
+    });
+  
+  it('to test /GET method', function(done) {
+        var post = sinon.stub(request, 'post');
+        const options = {
+            method: 'get',
+            body: {
+                subject : "testing mocha unit tests",
+                author : "Poonam Singh",
+                message : "Testing Notes GET method",
+                noteLength: "10",
+                noteTime: "11/25/2018, 8:29:48 PM"
+            },
+            json: true,
+            url: `${base}/api/notes`,
+            res:200
+          };
+          const obj = options;
+          post.yields("success", JSON.stringify(obj.body) );
+          request.get(options, (err, res, body) => {
+              expect(JSON.parse(res).author).to.exist;
+            done();
+          });
+          done();
     });
 
 })
