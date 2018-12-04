@@ -307,4 +307,8 @@ MongoClient.connect("mongodb://localhost:27017/notes", function(err, client) {
   }
 );
 
-var server = app.listen(port, () =>  console.log(`Example app listening on port ${port}!`))
+
+
+var server = app.listen(port, () =>
+  console.log(`Example app listening on port ${port}!`)
+);
