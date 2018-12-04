@@ -1,4 +1,3 @@
-let assert = require('assert');
 var sinon = require('sinon');
 var chai = require('chai');
 var should = require('should');
@@ -88,59 +87,6 @@ describe('To test http methods for QuickNote', function(){
           const obj = options;
           post.yields("success", JSON.stringify(obj.body) );
           request.post(options, (err, res, body) => {
-              expect(JSON.parse(res).author).to.exist;
-            done();
-          });
-    });
-
-    it('to test /GET method, should respond with JSON array', function(done) {
-      // need help here
-      request(app)
-        .get('/api/notes')
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end(function(err, res) {
-          if (err) return done(err);
-          res.body.should.be.instanceof(Array);
-          done();
-        });
-    });
-
-    it('should respond with redirect on post', function(done) {
-      // need help here
-      request(app)
-          .post('/api/notes')
-          //This will be one of the id value
-          .send({"participant":{"nuid":"98ASDF988SDF89SDF89989SDF9898"}})
-          .expect(200)
-          .expect('Content-Type', /json/)
-          .end(function(err, res) {
-            if (err) done(err);
-            res.body.should.have.property('participant');
-            res.body.participant.should.have.property('nuid', '98ASDF988SDF89SDF89989SDF9898');
-
-             });
-          done();
-    });
-
-  it('to test /GET method', function(done) {
-        var post = sinon.stub(request, 'post');
-        const options = {
-            method: 'get',
-            body: {
-                subject : "testing mocha unit tests",
-                author : "Poonam Singh",
-                message : "Testing Notes GET method",
-                noteLength: "10",
-                noteTime: "11/25/2018, 8:29:48 PM"
-            },
-            json: true,
-            url: `${base}/api/notes`,
-            res:200
-          };
-          const obj = options;
-          post.yields("success", JSON.stringify(obj.body) );
-          request.get(options, (err, res, body) => {
               expect(JSON.parse(res).author).to.exist;
             done();
           });
