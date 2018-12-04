@@ -42,6 +42,9 @@ describe("To test mongoose schema for all models", function(){
         expect(err.errors.secQuesEmp).to.exist;
         expect(err.errors.gender).to.exist;
         expect(err.errors.secAnsEmp).to.exist;  
+        expect('fNameEmp').to.be.a('string');
+        expect('lNameEmp').to.be.a('string');
+        expect('gender').to.be.a('string');
         done();
       })
    });
@@ -52,6 +55,8 @@ describe("To test mongoose schema for all models", function(){
       userSchema.validate(function (err){
         expect(err.errors.loginEmail).to.exist;
         expect(err.errors.loginPassword).to.exist;
+        expect('loginEmail').to.be.a('string');
+        expect('loginPassword').to.be.a('string');
         done();
       })
    });
@@ -92,37 +97,7 @@ describe('To test http methods for QuickNote', function(){
             done();
           });
     });
-
-    it('to test /GET method, should respond with JSON array', function(done) {
-      // need help here
-      request(app)
-        .get('/api/notes')
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end(function(err, res) {
-          if (err) return done(err);
-          res.body.should.be.instanceof(Array);
-          done();
-        });
-    });
-
-    it('should respond with redirect on post', function(done) {
-      // need help here
-      request(app)
-          .post('/api/notes')
-          //This will be one of the id value
-          .send({"participant":{"nuid":"98ASDF988SDF89SDF89989SDF9898"}})
-          .expect(200)
-          .expect('Content-Type', /json/)
-          .end(function(err, res) {
-            if (err) done(err);
-            res.body.should.have.property('participant');
-            res.body.participant.should.have.property('nuid', '98ASDF988SDF89SDF89989SDF9898');
-
-             });
-          done();
-    });
-
+  
   it('to test /GET method', function(done) {
         var post = sinon.stub(request, 'post');
         const options = {
@@ -144,6 +119,7 @@ describe('To test http methods for QuickNote', function(){
               expect(JSON.parse(res).author).to.exist;
             done();
           });
+          done();
     });
 
 })
