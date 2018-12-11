@@ -186,9 +186,9 @@ app.post("/api/sms", (req, res) => {
        );
 });
 
-MongoClient.connect("mongodb://localhost:27017/notes", function(err, client) {
-    let db = client.db("notes");
-    let notes = db.collection("notes");
+MongoClient.connect("mongodb://localhost:27017/login", function(err, client) {
+
+    var db = client.db("login");
     if (err) throw err;
 
     app.get("/notes/", (req, res) => {
@@ -207,7 +207,7 @@ MongoClient.connect("mongodb://localhost:27017/notes", function(err, client) {
     app.get("/api/notes/", (req, res) => {
      if(req.session.user){
       //let userDetails = JSON.parse(JSON.stringify(req.session.user));
-       notes.find({"emailClient": req.session.user.loginEmail}).toArray((err, result) => {
+       db.collection("notes").find({"emailClient": req.session.user.loginEmail}).toArray((err, result) => {
          if (err) throw err;
          else {
            result === null
@@ -222,7 +222,7 @@ MongoClient.connect("mongodb://localhost:27017/notes", function(err, client) {
     app.post("/api/notes/search", (req, res) => {
       let body = req.body;
       if(req.session.user){
-      notes.find({$and: [{"emailClient": req.session.user.loginEmail},{ message: { $regex: body.searchText }}]}).toArray((err, data) => {
+    	  db.collection("notes").find({$and: [{"emailClient": req.session.user.loginEmail},{ message: { $regex: body.searchText }}]}).toArray((err, data) => {
           if (err) {
             console.log(err);
             res.status(500).send("Some internal error");
@@ -235,7 +235,7 @@ MongoClient.connect("mongodb://localhost:27017/notes", function(err, client) {
 
     app.get("/api/notes/:id", (req, res) => {
       let id = ObjectID.createFromHexString(req.params.id);
-      notes.findOne({ _id: id }, (err, note) => {
+      db.collection("notes").findOne({ _id: id }, (err, note) => {
         if (err) {
           console.log(err);
           res.status(500).send("internal Server Error");
@@ -252,11 +252,12 @@ MongoClient.connect("mongodb://localhost:27017/notes", function(err, client) {
       if(req.session.user){
         let userDetails = JSON.parse(JSON.stringify(req.session.user));
         body.emailClient = userDetails.loginEmail;
-        notes.insert(body, (err, result) => {
+        db.collection("notes").insert(body, (err, result) => {
           if (err) { 
           console.log(err);
           res.status(500).send("Some internal error");
           } else {
+        	  console.log("result", result)
           res.status(200).send(result);
         }
       });
@@ -279,7 +280,7 @@ MongoClient.connect("mongodb://localhost:27017/notes", function(err, client) {
           noteTime: `${noteTime}`
         }
       };
-      notes.updateOne({ _id: id }, newvalues, (err, note) => {
+      db.collection("notes").updateOne({ _id: id }, newvalues, (err, note) => {
         if (err) {
           console.log(err);
           res.status(500).send("internal Server Error");
@@ -293,7 +294,7 @@ MongoClient.connect("mongodb://localhost:27017/notes", function(err, client) {
 
     app.delete("/api/notes/:id", (req, res) => {
       let id = ObjectID.createFromHexString(req.params.id);
-      notes.removeOne({ _id: id }, (err, note) => {
+      db.collection("notes").removeOne({ _id: id }, (err, note) => {
         if (err) {
           console.log(err);
           res.status(500).send("internal Server Error");
