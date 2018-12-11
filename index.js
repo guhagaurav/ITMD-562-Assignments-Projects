@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8081;
 const parseJson = require("parse-json");
 const bodyParser = require("body-parser");
 var MongoClient = require("mongodb").MongoClient;
@@ -13,10 +13,10 @@ var session = require('express-session');
 var validator = require('express-validator');
 var MongoDBStore = require('connect-mongodb-session')(session);
 require("request");
-mongoose.connect("mongodb://localhost:27017/login",{
+mongoose.connect("mongodb://admin:admin123@ds227664.mlab.com:27664/quicknote/login",{
 });
 var store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/login',
+  uri: 'mongodb://admin:admin123@ds227664.mlab.com:27664/quicknote/login',
   collection: 'mySessions'
 });
 var db = mongoose.connection;
@@ -64,6 +64,7 @@ function authenticateLogin(authBody){
       return tempAuthBody;
   })
 }
+
 
 db.on("error", console.error.bind(console, "connection error"));
 db.once("open", function(callback) {
